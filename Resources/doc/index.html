@@ -17,13 +17,15 @@
                 padding-bottom: 40px;
             }
         </style>
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-        <link rel="stylesheet" href="css/docs.css">
-        <link rel="stylesheet" href="css/main.css">
+
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+        <link rel="stylesheet" href="css/docs.css" />
+        <link rel="stylesheet" href="css/main.css" />
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
+
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
@@ -44,7 +46,7 @@
                             <li class="active"><a href="#installation">Installation</a></li>
                             <li><a href="#configuration">Configuration</a></li>
                             <li><a href="#queues">Queues</a></li>
-                            
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Prod/Cons<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -82,7 +84,7 @@
 
                 <h1>RSQueue</h1>
                 <p>
-                    A simple, fast and agile redis-based queue system<br />
+                    Simple, fast and agile redis-based queue system<br />
                     for Symfony2 developers
                 </p>
                 <p>
@@ -90,7 +92,7 @@
                 </p>
                 <ul class="masthead-links">
                     <li>
-                        <a href="http://github.com/mmoreram/rsqueue-bundle">Clone me</a>
+                        <a href="http://github.com/mmoreram/rsqueue-bundle">Fork me</a>
                     </li>
                     <li>
                         <a href="http://twitter.com/mmoreram">Follow me</a>
@@ -136,10 +138,10 @@
 
                     <div class="span4">
                         <a href="http://redis.io" alt="Redis.io"><img src="img/redis.png" /></a>
-                        <p>The project is based on the well-known redis key-value system. It is a wonder! Use the bundle <a href="https://github.com/snc/SncRedisBundle">snc/redis-bundle</a> for Symfony2.</p>
+                        <p>The project is based on the well-known redis key-value system. It is a wonder! Uses the bundle <a href="https://github.com/snc/SncRedisBundle">snc/redis-bundle</a> for Symfony2.</p>
                     </div>
                 </div>
-                
+
             </div>
         </div> <!-- /summary -->
 
@@ -149,43 +151,38 @@
                 <h1>Installation</h1>
                 <p class="pre">Compatible with Symfony 2.3 and later</p>
 
-                <div class="row">
-                    <div class="span6">
-                        <h3>Install redis</h3>
-                        <p>First of all, you must install redis service in your system. Otherwise, this bundle will not work. You can find a very intuitive and elaborated guide <a href="http://redis.io/topics/quickstart">here</a>.</p>
-                        <div class="code">
-                            <div>wget http://download.redis.io/redis-stable.tar.gz</div>
-                            <div>tar xvzf redis-stable.tar.gz</div>
-                            <div>cd redis-stable</div>
-                            <div>make</div>
-                        </div>
-                    </div>
+                <h3>Install redis</h3>
+                <p>First of all, you must install redis service in your system. Otherwise, this bundle will not work. You can find a very intuitive and elaborated guide <a href="http://redis.io/topics/quickstart">here</a>.</p>
+                <pre class="prettyprint"><code>
+    wget http://download.redis.io/redis-stable.tar.gz
+    tar xvzf redis-stable.tar.gz
+    cd redis-stable
+    make</code>
+                </pre>
 
-                    <div class="span6">
-                        <h3>Install RSQueueBundle</h3>
-                        <p>Once you have redis installed properly, you need to add a require line with RSQueueBundle</p>
-                        <div class="code">
-                            <div>"require": {</div>
-                                <div class="tab1">"php": ">=5.3.3",</div>
-                                <div class="tab1">"symfony/symfony": "2.3.*",</div>
-                                <div class="tab1">...</div>
-                                <div class="tab1">"mmoreram/phpcs-bundle": "dev-master"</div>
-                            <div>},</div>
-                        </div> 
-                        <p>Then you need to use composer to update your project dependences</p>
-                        <div class="code">
-                            <div>php composer.phar update</div>
-                        </div>
-                        <p>And register the bundle in your appKernel</p>
-                        <div class="code">
-                            <div>return array(</div>
-                            <div class="tab1">// ...</div>
-                            <div class="tab1">new Mmoreram\RSQueueBundle\RSQueueBundle(),</div>
-                            <div class="tab1">// ...</div>
-                            <div>);</div>
-                        </div>
-                    </div>
-                </div>
+                <h3>Install RSQueueBundle</h3>
+                <p>Once you have redis installed properly, you need to add a require line with RSQueueBundle</p>
+                <pre class="prettyprint"><code>
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.3.*",
+        ...
+        "mmoreram/rsqueue-bundle": "dev-master"
+    },</code>
+                </pre>
+                <p>Then you need to use composer to update your project dependences</p>
+                <pre class="prettyprint"><code>
+    php composer.phar update</code>
+                </pre>
+                <p>And register the bundle in your appKernel</p>
+                <pre class="prettyprint"><code>
+    return array(
+        // ...
+        new Mmoreram\RSQueueBundle\RSQueueBundle(),
+        // ...
+    );</code>
+                </pre>
+                <p>Et voilà! You can now start using the power of queues in your project.</p>
             </div>
 
             <div id="congiguration" class="configuration">
@@ -210,6 +207,22 @@
 
             <div id="serializers" class="serializers">
                 <h1>Serializers</h1>
+                <p>
+                    Cuando guardamos nuestros datos en una cola para que un proceso externo tenga acceso a ellos, debemos tener muy claro en que formato vamos a guardarlo para que los entienda y pueda trabajar con ellos. Para ello, este bundle implementa dos formas básicas de serialización y la posibilidad de añadir nuevas, simplemente implementando una interface
+                </p>
+                <p>
+                    Los serializers que implementa son el serializador nativo de php ( <a href="http://php.net/manual/en/function.serialize.php" alt="PHP Serialize documentation page">serialize</a>, <a href="http://php.net/manual/en/function.unserialize.php" alt="PHP Unserialize documentation page">unserialize</a> ) y el serializador de json ( <a href="http://php.net/manual/en/function.json-encode.php" alt="PHP Json_encode documentation page">json_encode</a>, <a href="http://php.net/manual/en/function.json-decode.php" alt="PHP Json_decode documentation page">json_decode</a> )
+                </p>
+                <p>
+                    Para configurar que serializador utilizar debemos añadir la opción <i>serializer</i>. Este parámetro acepta los valores PHP, JSON y un namespace de una clase existente en el caso de que queramos utilizar un serializer propio. En caso que sea así, tal clase deberá implementar la interface <i><a href="https://github.com/mmoreram/rsqueue-bundle/blob/master/Serializer/Interfaces/SerializerInterface.php" alt="Interaface for custom serializers" target="_blank">Mmoreram\RSQueueBundle\Serializer\Interfaces\SerializerInterface</a></i>
+                </p>
+                <pre><code>
+    rs_queue:
+        serializer: ~
+                </code></pre>
+                <p>
+                    Por defecto, el valor de este parámetro es JSON
+                </p>
             </div>
 
             <div id="events" class="events">
@@ -222,6 +235,7 @@
         <script href="http//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>
+        <!--<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>-->
         <script src="js/main.js"></script>
 
         <script>
