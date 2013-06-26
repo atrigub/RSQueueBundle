@@ -1,18 +1,15 @@
-                            
-/* TEAM */            
-PHP Developer and founder: : Marc Morera 
-Site: http://rsqueue.com
-Twitter: mmoreram                   
-Location: Barcelona, Catalunya, Catalunya.
+# humanstxt.org/
+# The humans responsible & technology colophon
 
-/* THANKS */
-http://redis.io
-http://github.com
-http://symfony.com
-Fabien Potencier
+# TEAM
 
-/* SITE */
-Last update: 2013/06/21
-Standards: HTML5, CSS3, 
-Components: Modernizr, jQuery
-Software: PHP5.3, Symfony2, Redis, Composer, Sublime Text 2
+    <name> -- <role> -- <twitter>
+
+# THANKS
+
+    <name>
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr
