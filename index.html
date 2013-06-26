@@ -73,6 +73,8 @@
 
                             <li><a href="#serializers">Serializers</a></li>
                             <li><a href="#events">Events</a></li>
+                            <li><a href="#events">Profiler</a></li>
+                            <li><a href="#events">About</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -148,7 +150,7 @@
 
         <div class="documentation container">
             <div id="installation" class="installation">
-                <h1>Installation</h1>
+                <h2>Installation</h2>
                 <p class="pre">Compatible with Symfony 2.3 and later</p>
 
                 <h3>Install redis</h3>
@@ -178,6 +180,7 @@
                 <pre class="prettyprint"><code>
     return array(
         // ...
+        new Snc\RedisBundle\SncRedisBundle(),
         new Mmoreram\RSQueueBundle\RSQueueBundle(),
         // ...
     );</code>
@@ -186,27 +189,40 @@
             </div>
 
             <div id="congiguration" class="configuration">
-                <h1>Configuration</h1>
+                <h2>Configuration</h2>
                 <p class="pre">Configure it according to your needs</p>
             </div>
 
             <div id="queues" class="queues">
-                <h1>Queues</h1>
+                <h2>Queues</h2>
                 <p class="pre">Exactly, what is a queue?</p>
+                <p>Por definición, una cola es una estructura de datos secuencial, con elementos ordenados, donde los elementos se añaden desde el final y se cogen desde el principio. Esta estrategia es conocida como FIFO ( First In, First Out )</p>
             </div>
 
             <div id="prodcons" class="prodcons">
-                <h1>Prod/Cons</h1>
+                <h2>Prod/Cons</h2>
                 <p class="pre">producer/consumer model</p>
+                <h3>Motivation</h3>
+                <p>Se trata del modelo mas sencillo y básico. Un conjunto finito de productores generan entradas en la cola, mientras que un conjunto finito de consumidores recuperan estas entradas para tratarlas</p>
+                <p>Un productor solo puede añadir una entrada en una cola, mientras que un consumidor puede estar escuchando, a la vez, distintas colas</p>
+                <h3>Implementation</h3>
+                <p>RSQueueBundle proporciona dos servicios distintos para tal modalidad. Por un lado tenemos el servicio dedicado exclusivamente a producir entradas para las colas. Para añadir una entrada en una cola, necesitas el nombre de la cola y, por supuesto, el elemento que quieres encolar</p>
+                <pre class="prettprint"><code>
+    $this->container->get("rsqueue.producer")->produce("queueAlias", array(
+        "field1"    =>  "value1",
+        "field2"    =>  "value2",
+    ));</code>
+                </pre>
+                <p>Por otro lado tenemos el servicio consumidor. Con este servicio puedes consumir una o mas colas</p>
             </div>
 
             <div id="pubsub" class="pubsub">
-                <h1>Pub/Sub</h1>
+                <h2>Pub/Sub</h2>
                 <p class="pre">publisher/subscriber model</p>
             </div>
 
             <div id="serializers" class="serializers">
-                <h1>Serializers</h1>
+                <h2>Serializers</h2>
                 <p>
                     Cuando guardamos nuestros datos en una cola para que un proceso externo tenga acceso a ellos, debemos tener muy claro en que formato vamos a guardarlo para que los entienda y pueda trabajar con ellos. Para ello, este bundle implementa dos formas básicas de serialización y la posibilidad de añadir nuevas, simplemente implementando una interface
                 </p>
@@ -221,13 +237,21 @@
         serializer: ~
                 </code></pre>
                 <p>
-                    Por defecto, el valor de este parámetro es JSON
+                    By default, this parameter value is set to Json
                 </p>
             </div>
 
             <div id="events" class="events">
-                <h1>Events</h1>
+                <h2>Events</h2>
                 <p class="pre">Subscribe to RSQueueBundle events</p>
+            </div>
+
+            <div id="profiler" class="profiler">
+                <h2>Profiler</h2>
+            </div>
+
+            <div id="about" class="about">
+                <h2>About</h2>
             </div>
 
         </div> <!-- /documentation -->

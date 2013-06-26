@@ -14,7 +14,7 @@
 
 .documentation {color:#5A5A5A;}
 .documentation .span6 p{text-align:left;color:#999;}
-.documentation h1 {margin:60px 0 10px;font-size:60px;font-weight:200;line-height:1;letter-spacing:-1px;}
+.documentation h2 {margin:60px 0 10px;font-size:60px;font-weight:200;line-height:1;letter-spacing:-1px;}
 .documentation p.pre {margin-bottom:40px;font-size:20px;font-weight:300;line-height:1.25;color:#777;}
 .documentation .code {margin:20px 0px 20px 10px; padding-left:10px; border-left:solid 2px #BBB; color: #666; text-align: left}
 .documentation .code .tab1 {margin-left:30px}
